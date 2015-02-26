@@ -1,0 +1,14 @@
+e:\HairSalon\platforms\wp8\Bin\Debug\ApplicationIcon.png
+e:\HairSalon\platforms\wp8\Bin\Debug\Background.png
+e:\HairSalon\platforms\wp8\Bin\Debug\com.vn.sunstar.dll
+e:\HairSalon\platforms\wp8\Bin\Debug\com.vn.sunstar.pdb
+e:\HairSalon\platforms\wp8\Bin\Debug\AppManifest.xaml
+e:\HairSalon\platforms\wp8\Bin\Debug\Properties\WMAppManifest.xml
+e:\HairSalon\platforms\wp8\Bin\Debug\CordovaAppProj_Debug_AnyCPU.xap
+e:\HairSalon\platforms\wp8\obj\Debug\App.g.cs
+e:\HairSalon\platforms\wp8\obj\Debug\cordovalib\CordovaView.g.cs
+e:\HairSalon\platforms\wp8\obj\Debug\MainPage.g.cs
+e:\HairSalon\platforms\wp8\obj\Debug\com.vn.sunstar.g.resources
+e:\HairSalon\platforms\wp8\obj\Debug\com.vn.sunstar.dll
+e:\HairSalon\platforms\wp8\obj\Debug\com.vn.sunstar.pdb
+e:\HairSalon\platforms\wp8\obj\Debug\XapCacheFile.xml

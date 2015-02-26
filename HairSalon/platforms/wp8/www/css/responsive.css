@@ -1,0 +1,177 @@
+﻿
+
+
+
+@media (max-width: 500px){
+    .closesize{
+        width:22px !important;
+        height:22px !important;
+    }
+    #rate_dialog img {
+    }
+    .font_size_10{
+        font-size:10px;
+    }
+    .font_size_12{
+        font-size:12px;
+    }
+    .font_size_14{
+        font-size:14px;
+    }
+    .font_size_20{
+        font-size:20px;
+    }
+    .font_size_24{
+        font-size:22px;
+    }
+    .font_size_36{
+        font-size:30px;
+    }
+    .font_size_48{
+        font-size:48px;
+    }
+    .category .title{
+        height:30px;
+        line-height:30px
+    }
+}
+
+@media (min-width: 500px) and (max-width:700px){
+    .closesize{
+        width:40px !important;
+        height:40px !important;
+    }
+    #rate_dialog img {
+    }
+    .font_size_10{
+        font-size:16px;
+    }
+    .font_size_12{
+    font-size:20px;
+    }
+    .font_size_14{
+        font-size:24px;
+    }
+    .font_size_20{
+        font-size:28px;
+    }
+    .font_size_24{
+        font-size:32px;
+    }
+    .font_size_36{
+        font-size:36px;
+    }
+    .font_size_48{
+        font-size:56px;
+    }
+
+    .category .title{
+        height:40px;
+        line-height:40px
+    }
+}
+
+@media (min-width: 700px ) and (max-width:800px){
+    .closesize{
+        width:60px !important;
+        height:60px !important;
+    }
+    #rate_dialog img {
+    }
+    .font_size_10{
+        font-size:24px;
+    }
+    .font_size_12{
+    font-size:28px;
+    }
+    .font_size_14{
+        font-size:32px;
+    }
+    .font_size_20{
+        font-size:40px;
+    }
+    .font_size_24{
+        font-size:42px;
+    }
+    .font_size_36{
+        font-size:44px;
+    }
+    .font_size_48{
+        font-size:72px;
+    }
+
+    .category .title{
+        height:70px;
+        line-height:70px
+    }
+
+}
+@media (min-width: 800px) and (max-width:1300px){
+    .closesize{
+        width:80px !important;
+        height:80px !important;
+    }
+    #rate_dialog img {
+    }
+    
+    .font_size_10{
+        font-size:30px;
+    }
+    .font_size_12{
+    font-size:38px;
+    }
+    .font_size_14{
+        font-size:48px;
+    }
+    .font_size_20{
+        font-size:56px;
+    }
+    .font_size_24{
+        font-size:58px;
+    }
+    .font_size_36{
+        font-size:62px;
+    }
+    .font_size_48{
+        font-size:86px;
+    }
+    .category .title{
+        height:100px;
+        line-height:100px
+    }
+
+}
+@media (min-width: 1300px){
+    .closesize{
+        width:100px !important;
+        height:100px !important;
+    }
+    #rate_dialog img {
+    }
+    .font_size_10{
+        font-size:40px;
+    }
+    .font_size_12{
+    font-size:48px;
+    }
+    .font_size_14{
+        font-size:56px;
+    }
+    .font_size_20{
+        font-size:64px;
+    }
+    .font_size_24{
+        font-size:72px;
+    }
+    .font_size_36{
+        font-size:86px;
+    }
+    .font_size_48{
+        font-size:96px;
+    }
+    .category .title{
+        height:130px;
+        line-height:130px
+    }
+
+}
