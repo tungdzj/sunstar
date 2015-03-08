@@ -12,7 +12,6 @@
         <link rel="stylesheet" type="text/css" href="css/idangerous.swiper.css" />
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
-        
     </head>
     <body class="font_size_14">
         <div id="main_page">
@@ -33,9 +32,9 @@
                 </form>
             </div>
             
-            <div class="page" id="ok_page">
+            <div class="page hidden" id="ok_page">
                 <div class="header">
-                    <p class="logo"><img src="img/goldwell.png" /></p>
+                    <p class="logo" onclick="mainControl.onBackClick()"><img src="img/goldwell.png" /></p>
                     <div class="container-left">
                         <div class="btn btn-menu-left menu-trigger"></div>
                     </div>
@@ -45,9 +44,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="navbar swiper-container">
-                    <div class="swiper-wrapper">
-                    </div>
+                <div class="navbar swiper-container" onclick="mainControl.onBackClick()">
+                    <img src="img/menu/back.png" />
+                    <p></p>
                 </div>
 
                 <div class="main">
@@ -221,14 +220,73 @@
                     </div>
                 </div>
             </div>
+
+            <!--mark-->
+            <div class="popup_rate popup hidden popup-rate" data-name="rate">
+                <div class="container">
+                    <div class="header">
+                        <p class="title">Đánh giá</p>
+                    </div>
+                    <div class="content">
+                        <table border="0">
+                            <tr class="invisible">
+                                <td align="left">Kỹ thuật</td>
+                                <td><input type="range" name="points" min="0" max="10" value="0" id="rate-kythuat"></td>
+                                <td id="">10</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Kỹ thuật</td>
+                                <td><input type="range" name="points" min="0" max="10" value="0" id="rate-kythuat" class="rate-slider"></td>
+                                <td id="label-for-rate-kythuat">0</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Nhân viên bán hàng</td>
+                                <td><input type="range" name="points" min="0" max="10" value="0" id="rate-nhanvien" class="rate-slider"></td>
+                                <td id="label-for-rate-nhanvien">0</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Dịch vụ khách hàng</td>
+                                <td><input type="range" name="points" min="0" max="10" value="0" id="rate-dichvu" class="rate-slider"></td>
+                                <td id="label-for-rate-dichvu">0</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Sản phẩm</td>
+                                <td><input type="range" name="points" min="0" max="10" value="0" id="rate-sanpham" class="rate-slider"></td>
+                                <td id="label-for-rate-sanpham">0</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Chính sách</td>
+                                <td><input type="range" name="points" min="0" max="10" value="0" id="rate-chinhsach" class="rate-slider"></td>
+                                <td id="label-for-rate-chinhsach">0</td>
+                            </tr>
+                            <tr class="invisible">
+                                <td align="left">Kỹ thuật</td>
+                                <td><input type="range" name="points" min="0" max="10" value="0" id="rate-kythuat"></td>
+                                <td id="">10</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="controls">
+                        <div class="grid-a">
+                            <div class="block-a">
+                                <div class="btn btn-ok" onclick="store.user.rate()">Đồng ý</div>
+                            </div>
+                            <div class="block-b">
+                                <div class="btn btn-cancel" onclick="popup.close('rate')">Hủy bỏ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <script type="text/javascript" src="js/utils/utils.js"></script>
         <script type="text/javascript" src="js/marquee.js"></script>
+        <script type="text/javascript" src="js/xdate.js"></script>
         <!--models-->
         <script type="text/javascript" src="js/models/ClientModel.js"></script>
         <script type="text/javascript" src="js/models/DataModel.js"></script>
-        
+        <script type="text/javascript" src="js/models/UserModel.js"></script>
 
         <!--views-->
         <script type="text/javascript" src="js/views/Templates.js"></script>

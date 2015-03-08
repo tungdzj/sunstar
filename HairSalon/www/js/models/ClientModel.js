@@ -90,5 +90,17 @@
             'password': store.user.data.password,
             'content': content
         }, callback);
+    },
+
+    rate: function (content, callback) {
+        this.sendRequest('addRate', {
+            'username': store.user.data.username,
+            'password': store.user.data.password,
+            'rate1': content.rate1,
+            'rate2': content.rate2,
+            'rate3': content.rate3,
+            'rate4': content.rate4,
+            'rate5': content.rate5,
+        }, callback);
     }
 }

@@ -14,14 +14,37 @@
     //        mainControl.onMenuItemClick(Number(index));
     //    });
     //})
+
+    $(".rate-slider").each(function () {
+        $(this).on('input', function () {
+                var id = $(this).attr('id');
+                var label = '#label-for-' + id;
+                $(label).html($(this).val());
+            });
+        })
 });
 
 
 var mainControl = {
+    orderPromotion: function(id){
+
+    },
+
     onBackClick: function () {
-        if (store.parent.parentId != '-1') {
-            store.parent = store.parent.parent;
+        switch (store.root) {
+            case 'news':
+            case 'order':
+            case 'color':
+            case 'promotion':
+            case 'document':
+            case 'salon':
+                if (store.parent.parent != null) {
+                    store.parent = store.parent.parent;
+                    $('.navbar p').html(store.category[store.root][store.parent.id].name);
+                }
+                break;
         }
+        
         mainView.Refresh()
     },
     onMenuItemClick: function (index) {
@@ -66,8 +89,9 @@ var mainControl = {
                 this.updateData('salon');
                 break;
         }
-        layout.navScroll.removeAllSlides();
-        layout.navScroll.appendSlide('<div onclick="mainControl.onNavClick(' + store.parent.id + ')">' + store.name[store.root] + '</div>')
+        $('.navbar p').html(store.name[store.root]);
+        //layout.navScroll.removeAllSlides();
+        //layout.navScroll.appendSlide('<div onclick="mainControl.onNavClick(' + store.parent.id + ')">' + store.name[store.root] + '</div>')
         //$('.page_title').html();
     },
     updateData: function (root) {
@@ -84,11 +108,11 @@ var mainControl = {
         mainView.Refresh()
     },
     onItemClick: function (id) {
-        if (store.parent.child[id].type == 1) {
+        console.log(store.parent.child[id].type)
+        if (store.parent.child[id].type == 1 || store.parent.child[id].type == '1') {
             switch (store.root) {
                 case 'salon':
                 case 'color':
-                case 'promotion':
                     store.parent = store.parent.child[id];
                     mainControl.generatePath();
                     break;
@@ -134,17 +158,12 @@ var mainControl = {
                     }
                     break;
                 case 'promotion':
-                    /*
-                    if (store.user.isLogin) {
-                        utils.ShowPrompt('Nhập số lượng', 'Đặt hàng', function (result) {
-                            if (result.btn == 'ok') {
-                                var n = Number(result.content);
-                                store.user.orderPromotion(store.parent.child[id].id, n);
-                            }
-                        })
-                    } else {
-                        store.user.login();
-                    }*/
+                    utils.ShowPrompt('Nhập số lượng', 'Đặt hàng khuyến mại', function (result) {
+                        if (result.btn == 'ok') {
+                            var n = Number(result.content);
+                            store.user.orderPromotion(store.parent.child[id].id, n);
+                        }
+                    })
                     break;
             }
             mainView.Refresh();
@@ -173,41 +192,46 @@ var mainControl = {
     },
 
     generatePath: function () {
-        layout.navScroll.removeAllSlides();
+        //layout.navScroll.removeAllSlides();
         var i = store.parent;
         var str = '';
         var first = 1;
-        if (store.root == 'document' || store.root == 'color') {
-            while (i.parentId != -1) {
-                if (first == 1) {
-                    first = 0;
-                    if (i.type == '0') {
-                        layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.category[store.root][i.id].name + '</div>');
-                    } else {
-                        layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.item[store.root][i.id].name + '</div>');
-                    }
-                } else {
-                    layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.category[store.root][i.id].name + '</div>');
-                }
-                i = i.parent;
-            }
+        if (store.parent.type == '0') {
+            $('.navbar p').html(store.category[store.root][store.parent.id].name);
         } else {
-            while (i.parentId != 0) {
-                if (first == 1) {
-                    first = 0;
-                    if (i.type == '0') {
-                        layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.category[store.root][i.id].name + '</div>');
-                    } else {
-                        layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.item[store.root][i.id].name + '</div>');
-                    }
-                } else {
-                    layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.category[store.root][i.id].name + '</div>');
-                }
-                i = i.parent;
-            }
+            $('.navbar p').html(store.item[store.root][store.parent.id].name);
         }
+        //if (store.root == 'document' || store.root == 'color') {
+        //    while (i.parentId != -1) {
+        //        if (first == 1) {
+        //            first = 0;
+        //            if (i.type == '0') {
+        //                layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.category[store.root][i.id].name + '</div>');
+        //            } else {
+        //                layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.item[store.root][i.id].name + '</div>');
+        //            }
+        //        } else {
+        //            layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.category[store.root][i.id].name + '</div>');
+        //        }
+        //        i = i.parent;
+        //    }
+        //} else {
+        //    while (i.parentId != 0) {
+        //        if (first == 1) {
+        //            first = 0;
+        //            if (i.type == '0') {
+        //                layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.category[store.root][i.id].name + '</div>');
+        //            } else {
+        //                layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.item[store.root][i.id].name + '</div>');
+        //            }
+        //        } else {
+        //            layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + i.id + ')">' + store.category[store.root][i.id].name + '</div>');
+        //        }
+        //        i = i.parent;
+        //    }
+        //}
         
-        layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + store.data[store.root].id + ')">' + store.name[store.root] + '</div>');
+        //layout.navScroll.prependSlide('<div onclick="mainControl.onNavClick(' + store.data[store.root].id + ')">' + store.name[store.root] + '</div>');
         return str;
     },
 

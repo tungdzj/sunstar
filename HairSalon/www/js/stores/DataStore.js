@@ -14,10 +14,9 @@ var store = {
     //category
     getCategory:function(callback){
         client.getCategory(function (data) {
-            
             store.processCategoryData(data);
             callback();
-            store.getPromotion(data.data.promotionCategory);
+            dateUtils.schedule();
         });
     },
 
@@ -41,13 +40,18 @@ var store = {
         store.findChild(0, tmp, store.data.news);
 
         //promotion category
-        tmp = [];
         for (var i = 0; i < data.data.promotionCategory.length; i++) {
             store.category.promotion[data.data.promotionCategory[i].id] = new CategoryModel(data.data.promotionCategory[i]);
             data.data.promotionCategory[i].type = 0;
             tmp[data.data.promotionCategory[i].id] = new NodeModel(data.data.promotionCategory[i]);
+            var node = new NodeModel({
+                'id': data.data.promotionCategory[i].id,
+                'parentId': 0,
+                'type': 0
+            })
+            store.data.promotion.child.push(node);
         }
-        store.findChild(0, tmp, store.data.promotion);
+        store.getPromotion(data.data);
 
         //document
         tmp = [];
@@ -69,14 +73,17 @@ var store = {
         //add root category node
         store.data.order = store.data.order.child[0];
         store.data.news = store.data.news.child[1];
-        store.data.promotion = store.data.promotion.child[1];
-        //store.data.document = store.data.document[0];
 
         //store.category.order[0] = new CategoryModel({ 'id': '0', 'name': 'Đặt hàng', 'image': null, 'type': '0', 'parentId': '-1' });
         store.category.news[0] = new CategoryModel({ 'id': '0', 'name': 'Tin tức', 'image': null, 'type': '0', 'parentId': '-1' });
-        store.category.promotion[0] = new CategoryModel({ 'id': '0', 'name': 'Khuyến mại', 'image': null, 'type': '0', 'parentId': '-1' });
+        store.category.news[2].name = 'Tin tức';
+        store.category.order[1].name = 'Đặt hàng';
+        store.data.order.parent = null;
+        store.data.news.parent = null;
+        //store.category.promotion[0] = new CategoryModel({ 'id': '0', 'name': 'Khuyến mại', 'image': null, 'type': '0', 'parentId': '-1' });
         store.category.document[0] = new CategoryModel({ 'id': '0', 'name': 'Đào tạo', 'image': null, 'type': '0', 'parentId': '-1' });
         store.category.color[0] = new CategoryModel({ 'id': '0', 'name': 'Color Zoom', 'image': null, 'type': '0', 'parentId': '-1' });
+        store.category.promotion[0] = new CategoryModel({ 'id': '0', 'name': 'Khuyến mại', 'image': null, 'type': '0', 'parentId': '-1' });
 
         
     },
@@ -97,18 +104,30 @@ var store = {
     },
 
     getPromotion: function (data) {
-        promotion.kmcontent = store.correctLink(data[0].content);
-        promotion.kmscontent = store.correctLink(data[1].content);
-        console.log(data[0].content);
-        console.log(store.correctLink(data[1].content));
-        promotion.init();
-        //callback();
-        //client.getItem('promotion', function (data) {
-        //    //store.processItemData('promotion', data.data);
-        //    promotion.url = data.data;
-        //    promotion.init();
-        //    callback();
-        //});
+        for (var i = 0; i < data.promotion.length; i++) {
+            store.item.promotion[data.promotion[i].id] = new PromotionModel(data.promotion[i]);
+            var node = new NodeModel({
+                'id': data.promotion[i].id,
+                'parentId': data.promotion[i].categoryId,
+                'type': 1
+            })
+            node.type = 1;
+            store.category.promotion[data.promotion[i].categoryId].child.push(node);
+        }
+
+        store.data.promotion.child[0].child = store.category.promotion[store.data.promotion.child[0].id].child;
+        for (var n in store.data.promotion.child[0].child) {
+            store.data.promotion.child[0].child[n].parent = store.data.promotion.child[0];
+        }
+        store.data.promotion.child[1].child = store.category.promotion[store.data.promotion.child[1].id].child;
+        store.data.promotion.child[0].parent = store.data.promotion;
+        store.data.promotion.child[1].parent = store.data.promotion;
+        for (var n in store.data.promotion.child[1].child) {
+            store.data.promotion.child[1].child[n].parent = store.data.promotion.child[0];
+        }
+        //promotion.kmcontent = store.correctLink(data.promotionCategory[0].content + '<img alt="" src="/' + data.promotionCategory[0].image + '"/>');
+        //promotion.kmscontent = store.correctLink(data.promotionCategory[1].content + '<img alt="" src="/' + data.promotionCategory[1].image + '"/>');
+        //promotion.init();
     },
 
     getDocument: function (callback) {

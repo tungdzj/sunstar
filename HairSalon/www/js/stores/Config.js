@@ -30,7 +30,15 @@
         if (config.data.remember_password == '1') {
             $('#login_page #username').val(this.data.username);
             $('#login_page #password').val(this.data.password);
+            store.user.checkLogin(this.data.username, this.data.password);
         }
         checkbox.setValue('remember_password', config.data.remember_password);
+    },
+
+    logout: function () {
+        checkbox.setValue('remember_password', 0);
+        $('#login_page #username').val('');
+        $('#login_page #password').val('');
+        this.update();
     }
 }

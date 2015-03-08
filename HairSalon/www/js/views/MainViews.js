@@ -91,7 +91,6 @@
                 }
                 break;
             case 'salon':
-            case 'promotion':
                 if (store.parent.type == '0') {
                     var child = store.parent.child;
                     for (var c in child) {
@@ -122,6 +121,49 @@
                     }
                 } else {
                     $('#info_content').html(store.item[store.root][store.parent.id].content);
+                }
+                break;
+            case 'promotion':
+                var child = store.parent.child;
+                switch (store.parent.id) {
+                    case 0:
+                        for (var c in child) {
+                            $("#category_content .listview").append(
+                                templates.gen('listitem', {
+                                    'type': 0,
+                                    'url': '',
+                                    'content': store.category[store.root][child[c].id].name,
+                                    'id': c,
+                                    'icon': 'carat-r'
+                                }));
+                        }
+                        break;
+                    case '1':
+                        for (var c in child) {
+                            if (Number(store.user.data.levelId) >= Number(store.item[store.root][child[c].id].level)) {
+                                $('#info_content').html(
+                                    templates.gen('promotions', {
+                                        'content': store.item[store.root][child[c].id].content
+                                    }));
+                                break;
+                            }
+                        }
+                        break;
+                    case '2':
+                        for (var c in child) {
+                            if (Number(store.user.data.levelId) >= Number(store.item[store.root][child[c].id].level)) {
+                                if (store.item[store.root][child[c].id] != null) {
+                                        $("#category_content .listview").append(
+                                            templates.gen('promotion', {
+                                                'image': store.item[store.root][child[c].id].image,
+                                                'id': c,
+                                                'timerid': child[c].id
+                                    }));
+                                }
+                            }
+                        }
+                        
+                        break;
                 }
                 break;
         }

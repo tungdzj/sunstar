@@ -1,8 +1,8 @@
-﻿<xapCache source="E:\HairSalon\platforms\wp8\Bin\Debug\CordovaAppProj_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="2/14/2015 8:47:22 AM">
-  <file source="E:\HairSalon\platforms\wp8\obj\Debug\com.vn.sunstar.dll" archivePath="com.vn.sunstar.dll" lastWriteTime="2/14/2015 8:47:22 AM" />
-  <file source="E:\HairSalon\platforms\wp8\config.xml" archivePath="config.xml" lastWriteTime="2/14/2015 8:44:33 AM" />
+﻿<xapCache source="E:\HairSalon\platforms\wp8\Bin\Debug\CordovaAppProj_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="2/26/2015 8:44:59 PM">
+  <file source="E:\HairSalon\platforms\wp8\obj\Debug\com.vn.sunstar.dll" archivePath="com.vn.sunstar.dll" lastWriteTime="2/26/2015 8:44:55 PM" />
+  <file source="E:\HairSalon\platforms\wp8\config.xml" archivePath="config.xml" lastWriteTime="2/14/2015 11:26:15 AM" />
   <file source="E:\HairSalon\platforms\wp8\www\cordova.js" archivePath="www\cordova.js" lastWriteTime="2/14/2015 8:44:32 AM" />
-  <file source="E:\HairSalon\platforms\wp8\www\cordova_plugins.js" archivePath="www\cordova_plugins.js" lastWriteTime="2/14/2015 8:44:32 AM" />
+  <file source="E:\HairSalon\platforms\wp8\www\cordova_plugins.js" archivePath="www\cordova_plugins.js" lastWriteTime="2/14/2015 11:26:15 AM" />
   <file source="E:\HairSalon\platforms\wp8\www\css\idangerous.swiper.css" archivePath="www\css\idangerous.swiper.css" lastWriteTime="2/14/2015 8:44:31 AM" />
   <file source="E:\HairSalon\platforms\wp8\www\css\responsive.css" archivePath="www\css\responsive.css" lastWriteTime="2/14/2015 8:44:31 AM" />
   <file source="E:\HairSalon\platforms\wp8\www\css\style.css" archivePath="www\css\style.css" lastWriteTime="2/14/2015 8:44:31 AM" />
@@ -61,7 +61,9 @@
   <file source="E:\HairSalon\platforms\wp8\www\js\views\MainViews.js" archivePath="www\js\views\MainViews.js" lastWriteTime="2/14/2015 8:44:31 AM" />
   <file source="E:\HairSalon\platforms\wp8\www\js\views\PopupManager.js" archivePath="www\js\views\PopupManager.js" lastWriteTime="2/14/2015 8:44:31 AM" />
   <file source="E:\HairSalon\platforms\wp8\www\js\views\Templates.js" archivePath="www\js\views\Templates.js" lastWriteTime="2/14/2015 8:44:31 AM" />
-  <file source="E:\HairSalon\platforms\wp8\www\plugins\org.apache.cordova.inappbrowser\www\inappbrowser.js" archivePath="www\plugins\org.apache.cordova.inappbrowser\www\inappbrowser.js" lastWriteTime="2/14/2015 8:44:32 AM" />
+  <file source="E:\HairSalon\platforms\wp8\www\plugins\org.apache.cordova.device\www\device.js" archivePath="www\plugins\org.apache.cordova.device\www\device.js" lastWriteTime="2/14/2015 11:26:15 AM" />
+  <file source="E:\HairSalon\platforms\wp8\www\plugins\org.apache.cordova.inappbrowser\www\inappbrowser.js" archivePath="www\plugins\org.apache.cordova.inappbrowser\www\inappbrowser.js" lastWriteTime="2/14/2015 11:26:15 AM" />
+  <file source="E:\HairSalon\platforms\wp8\www\plugins\org.apache.cordova.statusbar\www\statusbar.js" archivePath="www\plugins\org.apache.cordova.statusbar\www\statusbar.js" lastWriteTime="2/14/2015 11:26:15 AM" />
   <file source="E:\HairSalon\platforms\wp8\www\test.html" archivePath="www\test.html" lastWriteTime="2/14/2015 8:44:31 AM" />
   <file source="E:\HairSalon\platforms\wp8\Images\appbar.back.rest.png" archivePath="Images\appbar.back.rest.png" lastWriteTime="1/28/2015 3:51:17 PM" />
   <file source="E:\HairSalon\platforms\wp8\Images\appbar.close.rest.png" archivePath="Images\appbar.close.rest.png" lastWriteTime="1/28/2015 3:51:17 PM" />
@@ -74,5 +76,5 @@
   <file source="E:\HairSalon\platforms\wp8\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="1/28/2015 3:51:40 PM" />
   <file source="E:\HairSalon\platforms\wp8\Bin\Debug\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="1/28/2015 3:51:16 PM" />
   <file source="E:\HairSalon\platforms\wp8\Bin\Debug\Background.png" archivePath="Background.png" lastWriteTime="1/28/2015 3:51:16 PM" />
-  <file source="E:\HairSalon\platforms\wp8\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2/14/2015 8:44:42 AM" />
+  <file source="E:\HairSalon\platforms\wp8\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2/26/2015 8:44:57 PM" />
 </xapCache>

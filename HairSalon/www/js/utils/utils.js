@@ -173,3 +173,40 @@ var checkbox = {
         this.data[name].callback = callback;
     }
 }
+ 
+var counttimer = [];
+
+var dateUtils = {
+    schedule: function () {
+        for (var t in store.data.promotion.child[1].child) {
+            var p = store.data.promotion.child[1].child[t];
+            counttimer[p.id]--;
+            if (store.root == 'promotion') {
+                $('#promotion-timer-' + p.id).html(dateUtils.toDateTime(counttimer[p.id]));
+            }
+        }
+        setTimeout(dateUtils.schedule, 1000);
+
+    },
+    toDateTime: function(sec)
+    {
+        
+        var t = sec;
+        var d = Math.floor(t / 86400);
+        t -= d * 86400;
+        var h = Math.floor(t / 3600);
+        t -= h * 3600;
+        var m = Math.floor(t / 60);
+        t -= m * 60;
+        var s = t;
+        return d + ' ngày ' + h + ':' + m + ':' + s;
+    },
+    getDaysBetweenDates: function (date1, date2) {
+        date1.setHours(0);
+        date1.setMinutes(0, 0, 0);
+        date2.setHours(0);
+        date2.setMinutes(0, 0, 0);
+        var datediff = Math.abs(date1.getTime() - date2.getTime()); // difference 
+        return parseInt(datediff / (24 * 60 * 60 * 1000), 10);
+}
+}
