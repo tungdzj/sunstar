@@ -103,7 +103,37 @@
                         break;
                     case '2':
                         utils.Show('.navbar');
-                        page.changeContent('category_content');
+                        if (store.category.promotion[store.parent.id].show == '0') {
+                            page.changeContent('info_content');
+                            $('#info_content').scrollTop(0);
+                        } else {
+                            var check = 0;
+                            var child = store.parent.child;
+                            for (var c in child) {
+                                if (Number(store.user.data.levelId) == Number(store.item[store.root][child[c].id].level) &&
+                                    (store.user.data.localId == store.item[store.root][child[c].id].localId ||
+                                    store.item[store.root][child[c].id].localId == 0)) {
+                                    if (store.item[store.root][child[c].id] != null) {
+                                        check = 1;
+                                    }
+                                }
+                            }
+                            if (check == 1) {
+                                page.changeContent('category_content');
+                                layout.RefreshLayout();
+                                if (store.root == 'promotion') {
+                                    setTimeout(function () {
+                                        for (var s in layout.scrolls) {
+                                            layout.scrolls[s].reInit();
+                                        }
+                                    }, 3000)
+                                }
+                            } else {
+                                page.changeContent('info_content');
+                                $('#info_content').scrollTop(0);
+                                
+                            }
+                        }
                         break;
                 }
                 break;
@@ -112,11 +142,11 @@
     },
 
     RefreshLayout: function () {
-        
         for (var s in this.scrolls) {
-            this.scrolls[s].reInit();
-            this.scrolls[s].swipeTo(0);
+            layout.scrolls[s].reInit();
+            layout.scrolls[s].swipeTo(0);
         }
+        
         //for (var s in layout.navScroll.slides) {
         //    $(layout.navScroll.slides[s]).removeClass('nav_active');
         //}

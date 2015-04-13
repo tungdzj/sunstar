@@ -327,7 +327,6 @@ font-size: 40% !important;
     height: 2.5em;
     line-height: 2.5em;
     text-align: center;
-    margin-top: 5%;
 }
 
 .header .btn{
@@ -404,7 +403,9 @@ font-size: 40% !important;
     margin-left: 2% !important;
 }
 .promotion-timer{
-    color:#d01119;
+color: #d01119;
+  height: 4em;
+  font-size: 80%;
 }
 .promotion-image{
     width:100%;

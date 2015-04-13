@@ -10,6 +10,7 @@
     },
 
     sendRequest: function (func, params, callback, fail) {
+        console.log(encodeURI(this.request(func, params)));
         $.ajax({
             url: encodeURI(this.request(func, params)),
             dataType: 'jsonp',
@@ -52,6 +53,14 @@
         this.sendRequest('getNewsById', { 'id': id }, callback);
     },
 
+    getPromotion: function(callback){
+        this.sendRequest('getPromotion',
+            {
+                'username': store.user.data.username,
+                'password': store.user.data.password
+            }, callback);
+    },
+
     sendOrder: function (json, callback) {
         this.sendRequest('order',
             {
@@ -90,5 +99,27 @@
             'password': store.user.data.password,
             'content': content
         }, callback);
+    },
+
+    rate: function (content, callback) {
+        this.sendRequest('addRate', {
+            'username': store.user.data.username,
+            'password': store.user.data.password,
+            'rate1': content.rate1,
+            'rate2': content.rate2,
+            'rate3': content.rate3,
+            'rate4': content.rate4,
+            'rate5': content.rate5,
+        }, callback);
+    },
+
+    register: function (type, regid, callback) {
+        this.sendRequest('RegisterDevice', {
+            'deviceType': type,
+            'regId': regid,
+            'username': store.user.data.username,
+            'password': store.user.data.password,
+            'uuid': app.uuid
+        })
     }
 }

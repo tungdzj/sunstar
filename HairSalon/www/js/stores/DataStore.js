@@ -51,7 +51,7 @@ var store = {
             })
             store.data.promotion.child.push(node);
         }
-        store.getPromotion(data.data);
+        
 
         //document
         tmp = [];
@@ -98,33 +98,51 @@ var store = {
 
     getNews: function (callback) {
         client.getItem('news', function (data) {
+            store.data.news.removeAllChild();
+            store.item.news = [];
+            for (var c in store.category.news) {
+                store.category.news[c].child = [];
+            }
             store.processItemData('news', data.data);
             callback();
         });
     },
 
-    getPromotion: function (data) {
-        for (var i = 0; i < data.promotion.length; i++) {
-            store.item.promotion[data.promotion[i].id] = new PromotionModel(data.promotion[i]);
-            var node = new NodeModel({
-                'id': data.promotion[i].id,
-                'parentId': data.promotion[i].categoryId,
-                'type': 1
-            })
-            node.type = 1;
-            store.category.promotion[data.promotion[i].categoryId].child.push(node);
-        }
+    getPromotion: function (callback) {
+        client.getPromotion(function (data) {
+            for (var c in store.category.promotion) {
+                store.category.promotion[c].child = [];
+            }
+            for (var c in store.data.promotion.child) {
+                store.data.promotion.child[c].child = [];
+            }
+            for (var i = 0; i < data.data.length; i++) {
+                if (data.data[i].id == null) {
+                    continue;
+                }
+                store.item.promotion[data.data[i].id] = new PromotionModel(data.data[i]);
+                var node = new NodeModel({
+                    'id': data.data[i].id,
+                    'parentId': data.data[i].categoryId,
+                    'type': 1
+                })
+                node.type = 1;
+                store.category.promotion[data.data[i].categoryId].child.push(node);
+            }
 
-        store.data.promotion.child[0].child = store.category.promotion[store.data.promotion.child[0].id].child;
-        for (var n in store.data.promotion.child[0].child) {
-            store.data.promotion.child[0].child[n].parent = store.data.promotion.child[0];
-        }
-        store.data.promotion.child[1].child = store.category.promotion[store.data.promotion.child[1].id].child;
-        store.data.promotion.child[0].parent = store.data.promotion;
-        store.data.promotion.child[1].parent = store.data.promotion;
-        for (var n in store.data.promotion.child[1].child) {
-            store.data.promotion.child[1].child[n].parent = store.data.promotion.child[0];
-        }
+            store.data.promotion.child[0].child = store.category.promotion[store.data.promotion.child[0].id].child;
+            for (var n in store.data.promotion.child[0].child) {
+                store.data.promotion.child[0].child[n].parent = store.data.promotion.child[0];
+            }
+            store.data.promotion.child[1].child = store.category.promotion[store.data.promotion.child[1].id].child;
+            store.data.promotion.child[0].parent = store.data.promotion;
+            store.data.promotion.child[1].parent = store.data.promotion;
+            for (var n in store.data.promotion.child[1].child) {
+                store.data.promotion.child[1].child[n].parent = store.data.promotion.child[0];
+            }
+            callback();
+        })
+        
         //promotion.kmcontent = store.correctLink(data.promotionCategory[0].content + '<img alt="" src="/' + data.promotionCategory[0].image + '"/>');
         //promotion.kmscontent = store.correctLink(data.promotionCategory[1].content + '<img alt="" src="/' + data.promotionCategory[1].image + '"/>');
         //promotion.init();
@@ -142,6 +160,7 @@ var store = {
             var re = new RegExp('<img alt="" src="/', 'g');
             for (var i = 0; i < data.data.length; i++) {
                 data.data[i].description = data.data[i].description.replace(re, '<img alt src="' + client.host + '/');
+                data.data[i].description = store.correctLink1(data.data[i].description);
             }
             store.processItemData('color', data.data);
             callback();
@@ -202,6 +221,11 @@ var store = {
 
     correctLink: function (data) {
         var re = new RegExp('<img alt="" src="/', 'g');
-        return data.replace(re, '<img alt src="' + client.host + '/');;
+        return data.replace(re, '<img alt src="' + client.host + '/');
+    },
+
+    correctLink1: function (data) {
+        var re = new RegExp('<a href', 'g');
+        return data.replace(re, '<a target="_blank" href');
     }
 }

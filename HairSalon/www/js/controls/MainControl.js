@@ -15,21 +15,23 @@
     //    });
     //})
 
-    $(".rate-slider").each(function () {
-        $(this).on('input', function () {
-                var id = $(this).attr('id');
-                var label = '#label-for-' + id;
-                $(label).html($(this).val());
-            });
-        })
+    
 });
 
+function rateEventHandle() {
+    $(".rate-slider").each(function () {
+        $(this).on('input', function () {
+            var id = $(this).attr('id');
+            var label = '#label-for-' + id;
+            $(label).html($(this).val());
+        });
+    });
+}
 
 var mainControl = {
     orderPromotion: function(id){
 
     },
-
     onBackClick: function () {
         switch (store.root) {
             case 'news':
@@ -60,33 +62,36 @@ var mainControl = {
                 this.updateData('news');
                 break;
             case 1:
-                this.updateData('document');
-                break;
-            case 2:
                 this.updateData('order');
                 break;
+                
+            case 2:
+                this.updateData('color');
+                break;
             case 3:
+                this.updateData('document');
+                break;
+                
+            case 4:
                 this.updateData('promotion');
                 break;
-            case 4:
-                if (!store.user.isLogin) {
-                    store.user.login();
-                } else {
-                    this.updateData('cart');
-                }
-                break;
+                
             case 5:
+                this.updateData('salon');
+                break;
+            case 6:
                 if (store.user.isLogin) {
                     store.user.logout();
                 } else {
                     store.user.login();
                 }
                 break;
-            case 6:
-                this.updateData('color');
-                break;
             case 7:
-                this.updateData('salon');
+                if (!store.user.isLogin) {
+                    store.user.login();
+                } else {
+                    this.updateData('cart');
+                }
                 break;
         }
         $('.navbar p').html(store.name[store.root]);
@@ -108,7 +113,6 @@ var mainControl = {
         mainView.Refresh()
     },
     onItemClick: function (id) {
-        console.log(store.parent.child[id].type)
         if (store.parent.child[id].type == 1 || store.parent.child[id].type == '1') {
             switch (store.root) {
                 case 'salon':
@@ -141,7 +145,9 @@ var mainControl = {
                     if (item.content == null) {
                         utils.ShowMessage('Chưa có tài liệu', 'Thông báo', function () { })
                     } else {
-                        utils.OpenLink(item.content)
+                        //utils.OpenLink(item.content)
+                        store.parent = store.parent.child[id];
+                        mainControl.generatePath();
                     }
                     break;
                 case 'news':
@@ -169,8 +175,16 @@ var mainControl = {
             mainView.Refresh();
         } else {
             if (store.parent.child[id].child.length == 0) {
+                
+                //if (store.root == 'promotion') {
+                //    utils.ShowMessage('Chương trình khuyến mại đã hết.\nChúc các Salon may mắn trong các chương trình sau.', 'Thông báo', function () { });
+                //} else {
+                //    utils.ShowMessage('Không có bài nào trong mục này!', 'Thông báo', function () { });
+                //}
                 if (store.root == 'promotion') {
-                    utils.ShowMessage('Chương trình khuyến mại đã hết.\nChúc các Salon may mắn trong các chương trình sau.', 'Thông báo', function () { });
+                    store.parent = store.parent.child[id];
+                    this.generatePath()
+                    mainView.Refresh();
                 } else {
                     utils.ShowMessage('Không có bài nào trong mục này!', 'Thông báo', function () { });
                 }

@@ -1,5 +1,6 @@
 
 var app = {
+    uuid: 'none',
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -12,7 +13,7 @@ var app = {
 
     onDeviceReady: function () {
         documentReady();
-        //mainControl.initEventListener();
+        app.uuid = device.uuid;
         if (device.platform == "iOS") {
             StatusBar.hide();
         }
@@ -25,3 +26,5 @@ var app = {
     }
 };
 app.initialize();
+
+//tung do thanh

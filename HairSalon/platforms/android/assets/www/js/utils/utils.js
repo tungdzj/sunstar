@@ -1,7 +1,6 @@
 ﻿var utils = {
     pages: [],
     InitPage:function(){
-
     },
     ShowLoading: function () {
         $('.loading').removeClass('hidden');
@@ -171,5 +170,56 @@ var checkbox = {
 
     bind: function (name, callback) {
         this.data[name].callback = callback;
+    }
+}
+ 
+var counttimer = [];
+
+var dateUtils = {
+    schedule: function () {
+        for (var t in store.data.promotion.child[1].child) {
+            var p = store.data.promotion.child[1].child[t];
+            if (store.item.promotion[p.id].timeToStart > 0){
+                store.item.promotion[p.id].timeToStart--;
+            } else if (store.item.promotion[p.id].timeToEnd > 0) {
+                store.item.promotion[p.id].timeToEnd--;
+            }
+            if (store.item.promotion[p.id].timeToStart > 0) {
+                    $("#promotion-btn-" + p.id).addClass("hidden");
+                    $('#promotion-timer-' + p.id).html(dateUtils.toDateTime(store.item.promotion[p.id].timeToStart));
+                } else if (store.item.promotion[p.id].timeToEnd > 0) {
+                    $('#promotion-timer-' + p.id).html(dateUtils.toDateTime(store.item.promotion[p.id].timeToEnd));
+                    $("#promotion-btn-" + p.id).removeClass("hidden");
+                } else {
+                    $('#promotion-timer-' + p.id).html('Hết thời gian khuyến mại');
+                    $("#promotion-btn-" + p.id).addClass("hidden");
+                }
+        }
+        setTimeout(dateUtils.schedule, 1000);
+
+    },
+    toDateTime: function(sec)
+    {
+        
+        var t = sec;
+        var d = Math.floor(t / 86400);
+        t -= d * 86400;
+        var h = Math.floor(t / 3600);
+        t -= h * 3600;
+        var m = Math.floor(t / 60);
+        t -= m * 60;
+        var s = t;
+        return d + ' ngày ' + h + ':' + m + ':' + s;
+    },
+    getDaysBetweenDates: function (date1, date2) {
+        date1.setHours(0);
+        date1.setMinutes(0, 0, 0);
+        date2.setHours(0);
+        date2.setMinutes(0, 0, 0);
+        var datediff = Math.abs(date1.getTime() - date2.getTime()); // difference 
+        return parseInt(datediff / (24 * 60 * 60 * 1000), 10);
+    },
+    replaceAll: function (find, replace, str) {
+        return str.replace(new RegExp(find, 'g'), replace);
     }
 }

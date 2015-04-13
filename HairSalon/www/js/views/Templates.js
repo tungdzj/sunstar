@@ -7,7 +7,7 @@
 
         'messageBox': '<div data-role="header" data-theme="a"><h1>{title}</h1></div><div data-role="main" class="ui-content"><h2>{content}</h2><a href="#" class="ui-btn" data-rel="back">Ok</a></div>',
         'promotions': /*'<img src="' + client.host +*/ '{content}"/><div>Nội dung đơn hàng</div><textarea id="order_promotion_input"></textarea><div class="btn" onclick="store.user.orderTung()">Đặt mua</div>',
-        'promotion': '<li class="promotion-li"><img class="promotion-image" src="' + client.host + '{image}"/><div class="grid-a"><div class="block-a promotion-timer" id="promotion-timer-{timerid}"></div><div class="block-b"><div class="btn" onclick="mainControl.onItemClick({id})">Đặt mua</div></div></div></li>'
+        'promotion': '<li class="promotion-li"><img class="promotion-image" src="' + client.host + '{image}"/><div class="grid-a"><div class="block-a promotion-timer" id="promotion-timer-{timerid}"></div><div class="block-b"><div class="btn hidden" id="promotion-btn-{timerid}" onclick="mainControl.onItemClick({id})">Đặt mua</div></div></div></li>'
     },
     gen: function (type, params) {
         var r = this.data[type];

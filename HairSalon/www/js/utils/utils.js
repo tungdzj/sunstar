@@ -1,7 +1,6 @@
 ﻿var utils = {
     pages: [],
     InitPage:function(){
-
     },
     ShowLoading: function () {
         $('.loading').removeClass('hidden');
@@ -180,10 +179,21 @@ var dateUtils = {
     schedule: function () {
         for (var t in store.data.promotion.child[1].child) {
             var p = store.data.promotion.child[1].child[t];
-            counttimer[p.id]--;
-            if (store.root == 'promotion') {
-                $('#promotion-timer-' + p.id).html(dateUtils.toDateTime(counttimer[p.id]));
+            if (store.item.promotion[p.id].timeToStart > 0){
+                store.item.promotion[p.id].timeToStart--;
+            } else if (store.item.promotion[p.id].timeToEnd > 0) {
+                store.item.promotion[p.id].timeToEnd--;
             }
+            if (store.item.promotion[p.id].timeToStart > 0) {
+                    $("#promotion-btn-" + p.id).addClass("hidden");
+                    $('#promotion-timer-' + p.id).html(dateUtils.toDateTime(store.item.promotion[p.id].timeToStart));
+                } else if (store.item.promotion[p.id].timeToEnd > 0) {
+                    $('#promotion-timer-' + p.id).html(dateUtils.toDateTime(store.item.promotion[p.id].timeToEnd));
+                    $("#promotion-btn-" + p.id).removeClass("hidden");
+                } else {
+                    $('#promotion-timer-' + p.id).html('Hết thời gian khuyến mại');
+                    $("#promotion-btn-" + p.id).addClass("hidden");
+                }
         }
         setTimeout(dateUtils.schedule, 1000);
 
@@ -208,5 +218,8 @@ var dateUtils = {
         date2.setMinutes(0, 0, 0);
         var datediff = Math.abs(date1.getTime() - date2.getTime()); // difference 
         return parseInt(datediff / (24 * 60 * 60 * 1000), 10);
-}
+    },
+    replaceAll: function (find, replace, str) {
+        return str.replace(new RegExp(find, 'g'), replace);
+    }
 }

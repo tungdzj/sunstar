@@ -1,11 +1,17 @@
 e:\HairSalon\platforms\android\ant-build\classes.dex : \
-e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstar\BuildConfig.class \
-e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstar\CordovaApp.class \
-e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstar\R$attr.class \
-e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstar\R$drawable.class \
-e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstar\R$string.class \
-e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstar\R$xml.class \
-e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstar\R.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\plugin\gcm\CordovaGCMBroadcastReceiver.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\plugin\gcm\GCMIntentService.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\plugin\gcm\PushHandlerActivity.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\plugin\gcm\PushPlugin.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\BuildConfig.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\MainActivity.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\Manifest$permission.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\Manifest.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\R$attr.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\R$drawable.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\R$string.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\R$xml.class \
+e:\HairSalon\platforms\android\ant-build\classes\com\vn\sunstarpro\R.class \
 e:\HairSalon\platforms\android\ant-build\classes\org\apache\cordova\device\Device.class \
 e:\HairSalon\platforms\android\ant-build\classes\org\apache\cordova\inappbrowser\InAppBrowser$1.class \
 e:\HairSalon\platforms\android\ant-build\classes\org\apache\cordova\inappbrowser\InAppBrowser$2.class \
@@ -26,3 +32,5 @@ e:\HairSalon\platforms\android\ant-build\classes\org\apache\cordova\statusbar\St
 e:\HairSalon\platforms\android\ant-build\classes\org\apache\cordova\statusbar\StatusBar$3.class \
 e:\HairSalon\platforms\android\ant-build\classes\org\apache\cordova\statusbar\StatusBar.class \
 e:\HairSalon\platforms\android\ant-build\dexedLibs\classes-63727baadf1cebc792822b5874bbbe7e.jar \
+e:\HairSalon\platforms\android\ant-build\dexedLibs\gcm-7112aabc04eb1c86c66b44348adf2a82.jar \
+e:\HairSalon\platforms\android\ant-build\dexedLibs\android-support-v13-641f8f778e373042aad8e36d21ad72b1.jar \

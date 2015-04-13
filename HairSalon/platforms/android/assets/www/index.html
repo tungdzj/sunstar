@@ -5,14 +5,13 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
-
+        <meta http-equiv="X-Frame-Options" content="DENY" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/responsive.css" />
         <link rel="stylesheet" type="text/css" href="css/idangerous.swiper.css" />
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
-        
     </head>
     <body class="font_size_14">
         <div id="main_page">
@@ -33,9 +32,9 @@
                 </form>
             </div>
             
-            <div class="page" id="ok_page">
+            <div class="page hidden" id="ok_page">
                 <div class="header">
-                    <p class="logo"><img src="img/goldwell.png" /></p>
+                    <p class="logo" onclick="mainControl.onBackClick()"><img src="img/goldwell.png" /></p>
                     <div class="container-left">
                         <div class="btn btn-menu-left menu-trigger"></div>
                     </div>
@@ -45,9 +44,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="navbar swiper-container">
-                    <div class="swiper-wrapper">
-                    </div>
+                <div class="navbar swiper-container" onclick="mainControl.onBackClick()">
+                    <img src="img/menu/back.png" />
+                    <p></p>
                 </div>
 
                 <div class="main">
@@ -57,15 +56,15 @@
                                 <img src="img/icon/tintuc.png" />
                                 <p>TIN TỨC</p>
                             </li>
-                            <li data-menu-index="1" class="block-b" onclick="mainControl.onMenuItemClick(1)">
+                            <li data-menu-index="1" class="block-b" onclick="mainControl.onMenuItemClick(3)">
                                 <img src="img/icon/tailieu.png" />
                                 <p>ĐÀO TẠO</p>
                             </li>
-                            <li data-menu-index="2" class="block-c" onclick="mainControl.onMenuItemClick(2)">
+                            <li data-menu-index="2" class="block-c" onclick="mainControl.onMenuItemClick(1)">
                                 <img src="img/icon/dathang.png" />
                                 <p>ĐẶT HÀNG</p>
                             </li>
-                            <li data-menu-index="3" class="block-d" onclick="mainControl.onMenuItemClick(3)">
+                            <li data-menu-index="3" class="block-d" onclick="mainControl.onMenuItemClick(4)">
                                 <img src="img/icon/khuyenmai.png" />
                                 <p>KHUYẾN MẠI</p>
                             </li>
@@ -127,28 +126,28 @@
                         <img src="img/menu/news.png" />
                         <div>TIN TỨC</div>
                     </li>
-                    <li data-menu-index="2" onclick="mainControl.onMenuItemClick(2)">
+                    <li data-menu-index="2" onclick="mainControl.onMenuItemClick(1)">
                         <img src="img/menu/order.png" />
                         <div>ĐẶT HÀNG</div>
                     </li>
-                    <li data-menu-index="6" onclick="mainControl.onMenuItemClick(6)">
+                    <li data-menu-index="6" onclick="mainControl.onMenuItemClick(2)">
                         <img src="img/menu/colorzoom.png" />
                         <div>COLOR ZOOM</div>
                     </li>
-                    <li data-menu-index="1" onclick="mainControl.onMenuItemClick(1)">
+                    <li data-menu-index="1" onclick="mainControl.onMenuItemClick(3)">
                         <img src="img/menu/document.png" />
                         <div>ĐÀO TẠO</div>
                     </li>
                     
-                    <li data-menu-index="3" onclick="mainControl.onMenuItemClick(3)">
+                    <li data-menu-index="3" onclick="mainControl.onMenuItemClick(4)">
                         <img src="img/menu/promotion.png" />
                         <div>KHUYẾN MẠI</div>
                     </li>
-                    <li data-menu-index="7" onclick="mainControl.onMenuItemClick(7)">
+                    <li data-menu-index="7" onclick="mainControl.onMenuItemClick(5)">
                         <img src="img/menu/salon.png" />
                         <div>SALON</div>
                     </li>
-                    <li data-menu-index="5" class="login_menu" onclick="mainControl.onMenuItemClick(5)">
+                    <li data-menu-index="5" class="login_menu" onclick="mainControl.onMenuItemClick(6)">
                         <img src="img/menu/logout.png" />
                         <div>ĐĂNG XUẤT</div>
                     </li>
@@ -221,14 +220,75 @@
                     </div>
                 </div>
             </div>
+
+            <!--mark-->
+            <div class="popup_rate popup hidden popup-rate" data-name="rate">
+                <div class="container">
+                    <div class="header">
+                        <p class="title">Đánh giá</p>
+                    </div>
+                    <div class="content">
+                        <table border="0">
+                            <tr class="invisible">
+                                <td align="left">Kỹ thuật</td>
+                                <td><input type="range" name="points" min="1" max="10" value="1" id="rate-kythuat"></td>
+                                <td id="">10</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Kỹ thuật</td>
+                                <td><input type="range" name="points" min="1" max="10" value="1" id="rate-kythuat" class="rate-slider"></td>
+                                <td id="label-for-rate-kythuat">1</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Nhân viên bán hàng</td>
+                                <td><input type="range" name="points" min="1" max="10" value="1" id="rate-nhanvien" class="rate-slider"></td>
+                                <td id="label-for-rate-nhanvien">1</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Dịch vụ khách hàng</td>
+                                <td><input type="range" name="points" min="1" max="10" value="1" id="rate-dichvu" class="rate-slider"></td>
+                                <td id="label-for-rate-dichvu">1</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Sản phẩm</td>
+                                <td><input type="range" name="points" min="1" max="10" value="1" id="rate-sanpham" class="rate-slider"></td>
+                                <td id="label-for-rate-sanpham">1</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Chính sách</td>
+                                <td><input type="range" name="points" min="1" max="10" value="1" id="rate-chinhsach" class="rate-slider"></td>
+                                <td id="label-for-rate-chinhsach">1</td>
+                            </tr>
+                            <tr class="invisible">
+                                <td align="left">Kỹ thuật</td>
+                                <td><input type="range" name="points" min="1" max="10" value="1" id="rate-kythuat"></td>
+                                <td id="">10</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="controls">
+                        <div class="grid-a">
+                            <div class="block-a">
+                                <div class="btn btn-ok" onclick="store.user.rate()">Đồng ý</div>
+                            </div>
+                            <div class="block-b">
+                                <div class="btn btn-cancel" onclick="popup.close('rate')">Hủy bỏ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
+
+        <script type="text/javascript" src="js/mypush.js"></script>
         <script type="text/javascript" src="js/utils/utils.js"></script>
         <script type="text/javascript" src="js/marquee.js"></script>
+        <script type="text/javascript" src="js/xdate.js"></script>
+        
         <!--models-->
         <script type="text/javascript" src="js/models/ClientModel.js"></script>
         <script type="text/javascript" src="js/models/DataModel.js"></script>
-        
+        <script type="text/javascript" src="js/models/UserModel.js"></script>
 
         <!--views-->
         <script type="text/javascript" src="js/views/Templates.js"></script>
@@ -249,6 +309,7 @@
         <script type="text/javascript" src="js/models/Promotion.js"></script>
 
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="cordova_plugins.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

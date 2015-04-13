@@ -15,6 +15,10 @@
                         {
                             "xml": "<Capability Name=\"ID_CAP_IDENTITY_DEVICE\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_PUSH_NOTIFICATION\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -33,6 +37,14 @@
                         {
                             "xml": "<feature name=\"Device\"><param name=\"wp-package\" value=\"Device\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PushPlugin\"><param name=\"wp-package\" value=\"PushPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Console\"><param name=\"wp-package\" value=\"DebugConsole\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -47,6 +59,12 @@
             "PACKAGE_NAME": "{d36d7c90-a6ca-11e4-b94c-0b0d4f2db755}"
         },
         "org.apache.cordova.device": {
+            "PACKAGE_NAME": "{d36d7c90-a6ca-11e4-b94c-0b0d4f2db755}"
+        },
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "{d36d7c90-a6ca-11e4-b94c-0b0d4f2db755}"
+        },
+        "org.apache.cordova.console": {
             "PACKAGE_NAME": "{d36d7c90-a6ca-11e4-b94c-0b0d4f2db755}"
         }
     },

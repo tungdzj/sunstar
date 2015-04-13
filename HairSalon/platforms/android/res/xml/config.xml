@@ -1,6 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.vn.sunstar" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.vn.sunstarpro" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
+    <feature name="PushPlugin">
+        <param name="android-package" value="com.plugin.gcm.PushPlugin" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
@@ -8,10 +14,7 @@
         <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="Device">
-        <param name="android-package" value="org.apache.cordova.device.Device" />
-    </feature>
-    <name>SunStar Salon</name>
+    <name>SunStar Pro</name>
     <description>
         GOLDWELL
     </description>
@@ -22,7 +25,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="KeyboardShrinksView" value="true" />
     <preference name="android-windowSoftInputMode" value="stateUnchanged|adjustPan" />
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="tungdo@neonstudio.us" href="mailto:tungdo@neonstudio.us">
         Neon Dev Team
     </author>
     <content src="index.html" />

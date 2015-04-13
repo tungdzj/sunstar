@@ -1,0 +1,14 @@
+keytool -genkey -v -keystore sunstar.keystore -alias sunstar -keyalg RSA -keysize 2048 -validity 10000
+
+
+cd platforms/android
+
+ant release
+
+cd bin
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore sunstar.keystore MainActivity-release-unsigned.apk sunstar
+
+jarsigner -verify -verbose -certs MainActivity-release-unsigned.apk
+
+zipalign -v 4 MainActivity-release-unsigned.apk SunStarPro.apk

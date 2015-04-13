@@ -1,6 +1,7 @@
 ﻿var mainView = {
     currentPage: 'category',
     pageTitle: 'Tin tức',
+    promotions: 0,
     Refresh: function () {
         layout.InitLayout();
         switch (store.root) {
@@ -42,7 +43,11 @@
                     switch (store.root) {
                         case 'news':
                         case 'color':
+                        
                             $('#news_content').html(store.item[store.root][store.parent.id].content);
+                            break;
+                        case 'document':
+                            $('#news_content').html(store.item[store.root][store.parent.id].document);
                             break;
                     }
                 }
@@ -104,7 +109,7 @@
                                 'url': '',
                                 'content': store.category[store.root][child[c].id].name,
                                 'id': c,
-                                'icon': 'doc'
+                                'icon': 'carat-r'
                             }));
                         } else {
                             if (store.item[store.root][child[c].id] != null) {
@@ -121,6 +126,7 @@
                     }
                 } else {
                     $('#info_content').html(store.item[store.root][store.parent.id].content);
+                    rateEventHandle();
                 }
                 break;
             case 'promotion':
@@ -139,36 +145,52 @@
                         }
                         break;
                     case '1':
-                        for (var c in child) {
-                            if (Number(store.user.data.levelId) >= Number(store.item[store.root][child[c].id].level)) {
-                                $('#info_content').html(
-                                    templates.gen('promotions', {
-                                        'content': store.item[store.root][child[c].id].content
-                                    }));
-                                break;
+                        if (store.category.promotion[store.parent.id].show == '0') {
+                            $('#info_content').html('<div class="message">Chương trình khuyến mại đã hết.<br>Chúc các Salon may mắn trong các chương trình sau.</div>');
+                        } else {
+                            if (child.length == 0) {
+                                $('#info_content').html('<div class="message">Chương trình khuyến mại đã hết.<br>Chúc các Salon may mắn trong các chương trình sau.</div>');
+                            }
+                            for (var c in child) {
+                                if (Number(store.user.data.levelId) == Number(store.item[store.root][child[c].id].level)) {
+                                    $('#info_content').html(
+                                        templates.gen('promotions', {
+                                            'content': store.item[store.root][child[c].id].content
+                                        }));
+                                    break;
+                                }
                             }
                         }
                         break;
                     case '2':
-                        for (var c in child) {
-                            if (Number(store.user.data.levelId) >= Number(store.item[store.root][child[c].id].level)) {
-                                if (store.item[store.root][child[c].id] != null) {
+                        if (store.category.promotion[store.parent.id].show == '0') {
+                            $('#info_content').html('<div class="message">Chương trình khuyến mại đã hết.<br>Chúc các Salon may mắn trong các chương trình sau.</div>');
+                        } else {
+                            var check = 0;
+                            for (var c in child) {
+                                if (Number(store.user.data.levelId) == Number(store.item[store.root][child[c].id].level) &&
+                                    (store.user.data.localId == store.item[store.root][child[c].id].localId ||
+                                    store.item[store.root][child[c].id].localId == 0)) {
+                                    if (store.item[store.root][child[c].id] != null) {
+                                        check = 1;
                                         $("#category_content .listview").append(
                                             templates.gen('promotion', {
                                                 'image': store.item[store.root][child[c].id].image,
                                                 'id': c,
                                                 'timerid': child[c].id
-                                    }));
+                                            }));
+                                    }
                                 }
                             }
+                            if (check == 0) {
+                                $('#info_content').html('<div class="message">Chương trình khuyến mại đã hết.<br>Chúc các Salon may mắn trong các chương trình sau.</div>');
+                            }
                         }
-                        
                         break;
                 }
                 break;
         }
         layout.RefreshLayout();
-        
     },
     ListView: function (parent) {
         $('.main_content .listview').empty();

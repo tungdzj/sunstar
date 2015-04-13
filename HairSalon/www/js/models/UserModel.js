@@ -46,6 +46,11 @@ function UserModel() {
         store.user.data.password = pass;
         client.login(function (data) {
             if (data.code == 0) {
+                
+                store.getPromotion(function () {
+                    push.applyPush();
+                });
+                store.user.data.localId = data.data.localId;
                 store.user.data.phone = data.data.phone;
                 store.user.data.fullname = data.data.fullname;
                 store.user.data.id = data.data.id;
@@ -64,6 +69,7 @@ function UserModel() {
                 store.user.cart.load();
                 store.category.cart.push(new CategoryModel({ 'id': '0', 'name': 'Giỏ hàng' }));
                 config.update();
+                push.check();
             } else {
                 utils.ShowMessage('Sai tên người dùng hoặc password', 'Thông báo', function () { });
             }
@@ -195,16 +201,29 @@ function Cart(user) {
     this.user = user;
     this.product = [];
     this.addProduct = function (productId, quantity) {
-        this.product.push({ 'id': productId, 'quantity': quantity });
-        var node = new NodeModel({
-            'id': productId,
-            'parentId': '0',
-            'quantity': quantity
-        });
-        node.type = 1;
-        store.data.cart.child.push(node);
+        var inCart = 0;
+        var index = 0;
+        for (var p in this.product) {
+            if (this.product[p].id == productId) {
+                inCart = 1;
+                index = p;
+                store.data.cart.child[p].quantity = quantity;
+                this.product[p].quantity = quantity;
+                break;
+            }
+        }
+        if (inCart == 0) {
+            this.product.push({ 'id': productId, 'quantity': quantity });
+            var node = new NodeModel({
+                'id': productId,
+                'parentId': '0',
+                'quantity': quantity
+            });
+            node.type = 1;
+            store.data.cart.child.push(node);
+            layout.setCartIcon(this.product.length);
+        }
         this.save();
-        layout.setCartIcon(this.product.length);
     }
     this.removeAllProduct = function () {
         this.product = [];
@@ -220,7 +239,6 @@ function Cart(user) {
     }
     this.load = function () {
         var data = JSON.parse(window.localStorage.getItem(user));
-        console.log(data)
         if (data != null) {
             this.product = data;
             layout.setCartIcon(this.product.length);

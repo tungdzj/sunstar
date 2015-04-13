@@ -33,6 +33,7 @@
             store.user.checkLogin(this.data.username, this.data.password);
         }
         checkbox.setValue('remember_password', config.data.remember_password);
+        config.registerPush();
     },
 
     logout: function () {
@@ -40,5 +41,9 @@
         $('#login_page #username').val('');
         $('#login_page #password').val('');
         this.update();
+    },
+
+    registerPush: function () {
+        
     }
 }
