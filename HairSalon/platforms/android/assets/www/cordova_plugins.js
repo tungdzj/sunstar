@@ -33,9 +33,8 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "com.phonegap.plugins.PushPlugin": "2.4.0",
-    "org.apache.cordova.console": "0.2.13",
     "org.apache.cordova.device": "0.3.0",
-    "org.apache.cordova.inappbrowser": "0.5.4",
+    "org.apache.cordova.inappbrowser": "0.6.0",
     "org.apache.cordova.statusbar": "0.1.10"
 }
 // BOTTOM OF METADATA

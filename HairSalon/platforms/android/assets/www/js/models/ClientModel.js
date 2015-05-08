@@ -114,6 +114,11 @@
     },
 
     register: function (type, regid, callback) {
+		if (device.platform == 'android' || device.platform == 'Android'){
+			type = 'AND'
+		}else{
+			type = 'IOS';
+		}
         this.sendRequest('RegisterDevice', {
             'deviceType': type,
             'regId': regid,

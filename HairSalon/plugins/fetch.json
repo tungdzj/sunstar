@@ -1,4 +1,16 @@
 {
+    "org.apache.cordova.inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.inappbrowser"
+        }
+    },
+    "org.apache.cordova.device": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.device"
+        }
+    },
     "com.phonegap.plugins.PushPlugin": {
         "source": {
             "type": "git",
@@ -6,10 +18,10 @@
             "subdir": "."
         }
     },
-    "org.apache.cordova.console": {
+    "org.apache.cordova.statusbar": {
         "source": {
             "type": "registry",
-            "id": "org.apache.cordova.console"
+            "id": "org.apache.cordova.statusbar"
         }
     }
 }

@@ -11,9 +11,13 @@ var push = {
         try{
             pushNotification = window.plugins.pushNotification;
             var pushed = window.localStorage.getItem('push');
+			var reg = window.localStorage.getItem('reg');
             if (pushed == null) {
                 push.register();
-            }
+            }else{
+				 client.register('AND', reg, function (data) {
+				})
+			}
         }catch(err){
 
         }
@@ -135,6 +139,7 @@ function onNotificationAPN(event) {
 //iOS
 function tokenHandler(result) {
     console.log("regid: " + result);
+	window.localStorage.setItem('reg', result);
     client.register('IOS', result, function (data) {
         if (data.code == 0) {
             window.localStorage.setItem('push', 'registered');
@@ -157,6 +162,7 @@ function onNotification(e) {
     switch (e.event) {
         case 'registered':
             if (e.regid.length > 0) {
+				window.localStorage.setItem('reg', e.regid);
                 client.register('AND', e.regid, function (data) {
                     if (data.code == 0) {
                         window.localStorage.setItem('push', 'registered');

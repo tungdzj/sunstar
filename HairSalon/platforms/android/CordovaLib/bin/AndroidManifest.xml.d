@@ -1,2 +1,2 @@
-E:\HairSalon\platforms\android\CordovaLib\bin\AndroidManifest.xml : \
-E:\HairSalon\platforms\android\CordovaLib\AndroidManifest.xml \
+E:\sunstar\platforms\android\CordovaLib\bin\AndroidManifest.xml : \
+E:\sunstar\platforms\android\CordovaLib\AndroidManifest.xml \
